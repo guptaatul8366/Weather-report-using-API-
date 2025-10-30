@@ -37,20 +37,21 @@
     </div>
 
     <script>
-        const apikey = "ee00a33ddbc7a1a5f0c21d14999bd62f";
-        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        const apikey = "ee00a33ddbc7a1a5f0c21d14999bd62f"; // create variable for api keys
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="; // create variable for apiurl
 
-        const searchbox = document.querySelector(".search input");
-        const searchbtn = document.querySelector(".search button");
-        const waetherIcon = document.querySelector(".waether-icon");
+        const searchbox = document.querySelector(".search input");  // store seaerch input of html in searchbox variable
+        const searchbtn = document.querySelector(".search button"); // same for searchbtn
+        const waetherIcon = document.querySelector(".waether-icon"); // same for weathericon
 
-        async function checkWeather(city) {
-            const response = await fetch(apiUrl + city + `&appid=${apikey}`);
-            var data = await response.json();
-            if (response.status == 404) {
+        async function checkWeather(city) { // create asynchronized function checkwaether();
+            const response = await fetch(apiUrl + city + `&appid=${apikey}`); // fetch info of api call on response variable;
+            var data = await response.json();  // conver response data from array to json format;
+            
+            if (response.status == 404) {                                   /*  if response is not fetched properly then it throw error*/
                 document.querySelector(".error").style.display = "block";
                 document.querySelector(".weather").style.display="none";
-            }
+            }                                                                   
             else {
                 document.querySelector(".city").innerHTML = data.name;
                 document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
